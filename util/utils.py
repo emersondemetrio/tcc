@@ -30,14 +30,14 @@ def get_cur_location():
 
     return os.getcwd()
 
-def parse_to_json(string_set):
+def parse_to_json(file_arr):
     """Parse ARR to json"""
 
-    file_arr = string_set.split("/")
     return json.dumps({
-        "artist" : file_arr[0],
-        "album"  : file_arr[1],
-        "track"  : file_arr[2]
+        "artist": file_arr[0],
+        "album": file_arr[1],
+        "track": file_arr[2],
+        "path": file_arr[3],
     })
 
 def write_file_with(name, content):
@@ -60,7 +60,7 @@ def write_json_file(file_name, tracks):
     """Write json File"""
 
     with open(file_name, 'w') as outfile:
-        json.dump(tracks, outfile)
+        json.dump(tracks, outfile, sort_keys=True, indent=4, separators=(',', ': '))
 
 def read_json_file(file_name):
     """Reads json File"""
