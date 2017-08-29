@@ -4,17 +4,20 @@ Utils Functions
 
 import os
 import io
+import re
 import json
 
-def sanitize_string(string, replaces):
+def sanitize_string(string, replaces, force=False):
     """Replaces given arr in s"""
 
     for replacing, repl_with in replaces:
         string = string.replace(replacing, repl_with)
-    #import re
-    #string.encode('ascii', errors='ignore').decode()
-    #string = re.sub(r'\[[0-9]+\]', r'', string)
-    #return re.sub(r'[^\x00-\x7f]', r' ', string)
+
+    if force:
+        string.encode('ascii', errors='ignore').decode()
+        string = re.sub(r'\[[0-9]+\]', r'', string)
+        string = re.sub(r'[^\x00-\x7f]', r' ', string)
+
     return string
 
 def get_valid_folder_path(folder_name):
