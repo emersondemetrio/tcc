@@ -6,6 +6,13 @@ import os
 import io
 import re
 import json
+import datetime as dt
+import time
+
+def get_cur_datetime():
+    """get cur datetime"""
+
+    return dt.datetime.utcfromtimestamp(time.time()).strftime("%Y/%m/%d %H:%M:%S")
 
 def sanitize_string(string, replaces, force=False):
     """Replaces given arr in s"""
