@@ -41,7 +41,7 @@ def parse_to_json(file_arr):
     """Parse ARR to json"""
 
     return json.dumps({
-        "artist": file_arr[0],
+        "artist": sanitize_string(file_arr[0], [], True),
         "album": file_arr[1],
         "track": file_arr[2],
         "path": file_arr[3],

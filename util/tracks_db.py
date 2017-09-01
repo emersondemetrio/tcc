@@ -21,6 +21,27 @@ class TracksDb:
             cursorclass=pymysql.cursors.DictCursor
         )
 
+    def truncate(self, table="all"):
+        """Truncate given/all tables"""
+
+        utils.show_message("Truncating %s table(s)." % table)
+
+        sqls = []
+        if table == "all":
+            sqls.append("TRUNCATE table track_tags;")
+            sqls.append("TRUNCATE table track;")
+            sqls.append("TRUNCATE table tag;")
+        else:
+            sqls.append("TRUNCATE table %s;" % table)
+
+        for sql in sqls:
+            try:
+                connection = self.get_connection()
+                with connection.cursor() as cursor:
+                    cursor.execute(sql)
+            finally:
+                connection.close()
+
     def insert_track(self, track):
         """Insert first track version"""
 
@@ -43,6 +64,36 @@ class TracksDb:
                     )
                 )
             connection.commit()
+        finally:
+            connection.close()
+
+    def update_track(self, track_id, field, val):
+        """Update track_id in field using val"""
+
+        try:
+            connection = self.get_connection()
+            with connection.cursor() as cursor:
+                sql = "UPDATE `track` SET `{}` = '{}' WHERE `track`.id = {}".format(
+                    field, val, track_id,
+                )
+                cursor.execute(sql)
+        finally:
+            connection.close()
+
+    def update_mbid(self, track, mbid):
+        """Search and update mbid"""
+
+        try:
+            connection = self.get_connection()
+            with connection.cursor() as cursor:
+                sql = "SELECT id FROM `track` WHERE name = (%s)"
+                cursor.execute(sql, (track["track"]))
+
+                try:
+                    self.update_track(cursor.fetchone()['id'], 'mbid', mbid)
+                except AttributeError:
+                    utils.show_message("Unable to update MIBD for %s" % track['track'], 1)
+
         finally:
             connection.close()
 
