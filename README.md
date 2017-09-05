@@ -20,7 +20,7 @@ Make sure the path is correct:
 
 ```export PYTHONPATH=.```
 
-Run
+### Run
 
 ```chmod +x init.sh```
 
