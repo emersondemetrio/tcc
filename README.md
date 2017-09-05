@@ -23,11 +23,7 @@ Make sure the path is correct:
 
 ### Run
 
-```chmod +x init.sh```
-
-```./init.sh```
-
-
+```chmod +x init.sh; ./init.sh```
 
 ### Tecnologias Utilizadas
 
