@@ -33,13 +33,11 @@ def create_image(input_name, output_name):
 def create_images_from_list(songs_path_list, images_folder):
     """Create image creating worker"""
 
-    folders = []
     for song in songs_path_list:
         artist_folder = os.path.join(images_folder, song['artist'])
 
         if not os.path.exists(artist_folder):
             utils.create_folder(artist_folder)
-            folders.append(artist_folder)
 
         output_file = song['path'].split("/").pop()
         output_file = os.path.join(artist_folder, output_file.replace(".mp3", ".png"))
