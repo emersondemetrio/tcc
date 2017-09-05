@@ -1,6 +1,12 @@
+# project gitignore:
+
 .vscode
 results/*.json
 init.sh
+results/images/*.png
+
+# Default Python gitignore
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

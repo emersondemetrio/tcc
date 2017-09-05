@@ -8,11 +8,36 @@ import re
 import json
 import datetime as dt
 import time
+import shutil
 
 def get_cur_datetime():
     """get cur datetime"""
 
     return dt.datetime.utcfromtimestamp(time.time()).strftime("%Y/%m/%d %H:%M:%S")
+
+def create_folder(abs_path, force=False):
+    """Create a folder forcing (if force)"""
+
+    if force:
+        try:
+            shutil.rmtree(abs_path)
+            show_message("Removing folder: '%s'" % abs_path)
+        except OSError:
+            show_message("Unable to remove folder: '%s'" % abs_path, 1)
+
+        try:
+            os.makedirs(abs_path)
+        except OSError:
+            show_message("Unable to create folder: '%s'" % abs_path, 1)
+    else:
+        try:
+            os.makedirs(abs_path)
+        except OSError:
+            if os.path.exists(abs_path):
+                print("Folder '%s' already exists." % abs_path)
+            else:
+                show_message("Unable to create folder: '%s'" % abs_path, 1)
+
 
 def sanitize_string(string, replaces, force=False):
     """Replaces given arr in s"""

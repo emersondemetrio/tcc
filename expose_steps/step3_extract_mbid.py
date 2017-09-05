@@ -2,6 +2,7 @@
 
 import os
 import re
+import sys
 import json
 import urllib
 import argparse
@@ -154,6 +155,10 @@ def main():
     parsed = parser.parse_args()
 
     json_file = os.path.join(parsed.input_folder, parsed.input_file + ".json")
+    if not os.path.exists(json_file):
+        utils.show_message("File does not exists: %s" % json_file, 1)
+        print("Please run previous steps first.\nAborting.")
+        sys.exit(-1)
 
     tracks_limit = int(parsed.tracks_limit)
     limit_population = False if parsed.limit_population == "no" else True

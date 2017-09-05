@@ -137,8 +137,6 @@ class TracksDb:
         else:
             sql = "SELECT {} FROM `track` LIMIT {}".format(fields, limit)
 
-        print(sql)
-
         try:
             connection = self.get_connection()
             with connection.cursor() as cursor:
@@ -146,4 +144,3 @@ class TracksDb:
                 return cursor.fetchall()
         finally:
             connection.close()
-
