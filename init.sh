@@ -22,7 +22,7 @@ python3 expose_steps/tag_crawler.py -k $LAST_FM_KEY;
 
 echo "STEP 4 - Create Spectros:"
 
-python3 expose_steps/image_creator.py -n 1000 -workers_number=20
+python3 expose_steps/image_creator.py -n 1000 -workers_number=20 # this will take a loooot of time...
 
 echo "STEP 5 - Training:"
 echo "NOT YET IMPLEMENTED"
