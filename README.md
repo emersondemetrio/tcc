@@ -26,6 +26,7 @@ Run
 
 ```./init.sh```
 
+
 ### Tecnologias Utilizadas
 
 - Python
