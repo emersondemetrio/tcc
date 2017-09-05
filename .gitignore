@@ -2,7 +2,8 @@
 
 .vscode
 results/*.json
-results/images/*.png
+results/images/
+!results/images/.empty
 
 # Default Python gitignore
 
