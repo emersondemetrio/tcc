@@ -67,16 +67,21 @@ class TracksDb:
         finally:
             connection.close()
 
-    def update_track(self, track_id, field, val):
+    def update_track(self, track_id, field, val, is_int=False):
         """Update track_id in field using val"""
 
         try:
             connection = self.get_connection()
             with connection.cursor() as cursor:
-                sql = "UPDATE `track` SET {} = '{}' WHERE `track`.id = {}".format(
-                    field, val, track_id
-                )
-                #print(sql)
+                if is_int:
+                    sql = "UPDATE `track` SET {} = {} WHERE `track`.id = {}".format(
+                        field, val, track_id
+                    )
+                else:
+                    sql = "UPDATE `track` SET {} = '{}' WHERE `track`.id = {}".format(
+                        field, val, track_id
+                    )
+                print(sql)
                 cursor.execute(sql, ())
                 connection.commit()
         finally:
