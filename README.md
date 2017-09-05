@@ -20,11 +20,13 @@ Make sure the path is correct:
 
 ```export PYTHONPATH=.```
 
+
 ### Run
 
 ```chmod +x init.sh```
 
 ```./init.sh```
+
 
 
 ### Tecnologias Utilizadas
