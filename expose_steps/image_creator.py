@@ -48,7 +48,7 @@ def create_images_from_list(songs_path_list, images_folder):
 
 def main():
     """
-    Populating Database with csv/json file:
+    Create ffmpeg workers
     """
 
     desc = "This module Create png images from songs."
