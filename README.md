@@ -22,7 +22,9 @@ Make sure the path is correct:
 
 Run
 
-```python3 file_analyst/reader.py```
+```chmod +x init.sh```
+
+```./init.sh```
 
 ### Tecnologias Utilizadas
 
