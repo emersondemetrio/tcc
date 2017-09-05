@@ -10,11 +10,11 @@ python3 file_analyst/track_extractor.py -i /media/emerson/Dados/music/;
 
 echo "STEP 2 - Populate DB:"
 
-python3 expose_steps/step2_poupate_db.py;
+python3 expose_steps/db_populate.py;
 
 echo "STEP 3 - Update MBID:"
 
-python3 expose_steps/step3_extract_mbid.py -k $LAST_FM_KEY;
+python3 expose_steps/mbid_crawler.py -k $LAST_FM_KEY;
 
 echo "STEP 4 - Update TAGS:"
 
