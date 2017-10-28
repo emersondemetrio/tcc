@@ -11,21 +11,14 @@
 			"lossless": 0,
 			"replay_gain": -7.27474784851,
 			"sample_rate": 44100,
-			"codec": "mp3",
-			"downmix": "mix",
-			"md5_encoded": "0c067b6c6afcdc40b056b88cba2cde3e"
+			"codec": "mp3"
 		},
 		"tags": {
 			"file_name": "10 When Will You Come Home.mp3",
 			"album": ["Hurry Up, We're Dreaming"],
 			"artist": ["M83"],
-			"date": ["2011", "2011"],
-			"discnumber": ["1"],
-			"encodedby": ["iTunes 10.5.0.142"],
 			"genre": ["Electronic, Dream Pop, New Wave, Synthpop, Shoegaze"],
-			"label": ["Naïve"],
-			"title": ["When Will You Come Home?"],
-			"tracknumber": ["10"]
+			"title": ["When Will You Come Home?"]
 		},
 		"version": {
 			"essentia": "2.1-beta3",
@@ -34,12 +27,7 @@
 		}
 	},
 	"rhythm": {
-		"beats_count": 116,
 		"beats_loudness": {
-			"dmean": 0.0177474264055,
-			"dmean2": 0.0314494594932,
-			"dvar": 0.000276941456832,
-			"dvar2": 0.000845725298859,
 			"max": 0.0991089344025,
 			"mean": 0.0323918350041,
 			"median": 0.028695018962,
@@ -47,20 +35,12 @@
 			"var": 0.000403594662203
 		},
 		"bpm": 126.829322815,
-		"danceability": 1.07945990562,
-		"onset_rate": 0.816503703594
+		"danceability": 1.07945990562
 	},
 	"tonal": {
 		"chords_changes_rate": 0.0262954365462,
 		"chords_number_rate": 0.00618716143072,
 		"key_strength": 0.568155288696,
-		"tuning_diatonic_strength": 0.413206577301,
-		"tuning_equal_tempered_deviation": 0.0806074142456,
-		"tuning_frequency": 436.708374023,
-		"tuning_nontempered_energy_ratio": 0.670630931854,
-		"chords_histogram": [22.9698371887, 51.0440826416, 3.55761790276, 4.0989947319, 0, 7.9659705162, 0, 3.48027849197, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3.78963661194, 0, 3.09358072281, 0],
-
-		"chords_key": "F#",
 		"chords_scale": "major",
 		"key_key": "D#",
 		"key_scale": "minor"
