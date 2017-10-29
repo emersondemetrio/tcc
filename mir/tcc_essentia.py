@@ -44,15 +44,23 @@ def run_rim(command_name, music, output_folder, output_format, profile=""):
 
         print("\nDone.")
 
+    return output_file
+
 def run_mfcc(music, output_folder):
     """run essentia_streaming_mfcc"""
 
-    run_rim("essentia_streaming_mfcc", music, output_folder, ".yml")
+    return run_rim("essentia_streaming_mfcc", music, output_folder, ".yml")
 
 def run_esem(music, profile, output_folder):
     """run essentia_streaming_mfcc"""
 
-    run_rim("essentia_streaming_extractor_music", music, output_folder, ".json", profile)
+    return run_rim(
+        "essentia_streaming_extractor_music",
+        music,
+        output_folder,
+        ".json",
+        profile
+    )
 
 if __name__ == "__main__":
     try:

@@ -212,18 +212,18 @@ Para cada gênero, foi atribuido um código numérico, conforme descrito a segui
 
 ```
 GENRE_CODES = {
-    "eletronic"         : 1,
-    "grunge"            : 2,
-    "hard-rock"         : 3,
-    "hip-hop"           : 4,
-    "indie"             : 5,
-    "metal"             : 6,
-    "new-metal"         : 7,
-    "pop"               : 8,
-    "pop-rock"          : 9,
-    "progressive-metal" : 10,
-    "punk"              : 11,
-    "ska"               : 12
+    "eletronic"         : 0,
+    "grunge"            : 1,
+    "hard-rock"         : 2,
+    "hip-hop"           : 3,
+    "indie"             : 4,
+    "metal"             : 5,
+    "new-metal"         : 6,
+    "pop"               : 7,
+    "pop-rock"          : 8,
+    "progressive-metal" : 9,
+    "punk"              : 10,
+    "ska"               : 11
 }
 ```
 

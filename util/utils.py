@@ -9,6 +9,7 @@ import json
 import datetime as dt
 import time
 import shutil
+import matplotlib.pyplot as plt
 
 def get_cur_datetime():
     """get cur datetime"""
@@ -105,3 +106,47 @@ def show_message(msg, level=-1):
 
     header = "INFO" if level < 0 else "WARNING" if level == 0 else "ERROR"
     print("\n[ {} ]\n{}".format(header, msg))
+
+def plot_genre_detected(results, song_name):
+    """
+    Plot
+    """
+
+    labels = [
+        "eletronic {} %".format(results[0]),
+        "grunge {} %".format(results[1]),
+        "hard-rock {} %".format(results[2]),
+        "hip-hop {} %".format(results[3]),
+        "indie {} %".format(results[4]),
+        "metal {} %".format(results[5]),
+        "new-metal {} %".format(results[6]),
+        "pop {} %".format(results[7]),
+        "pop-rock {} %".format(results[8]),
+        "progressive-metal {} %".format(results[9]),
+        "punk {} %".format(results[10]),
+        "ska {} %".format(results[11])
+    ]
+
+    colors = [
+        "black",
+        "red",
+        "blue",
+        "white",
+        "brown",
+        "yellowgreen",
+        "gold",
+        "lightskyblue",
+        "lightcoral",
+        "orange",
+        "violet",
+        "purple"
+    ]
+
+    patches, texts = plt.pie(results, colors=colors, startangle=90)
+
+    plt.title(song_name)
+    plt.legend(patches, labels, loc="best")
+
+    plt.axis('equal')
+    plt.tight_layout()
+    plt.show()
