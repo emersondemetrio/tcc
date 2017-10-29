@@ -3,36 +3,25 @@ from pybrain.tools.shortcuts import buildNetwork
 from pybrain.datasets import SupervisedDataSet
 from pybrain.supervised.trainers import BackpropTrainer
 
-ds = SupervisedDataSet(13, 1)
+data_set = SupervisedDataSet(2, 1)
 
-ds.addSample((
-    -885.995056152,
-    216.85345459,
-    52.4779205322,
-    -10.1295471191,
-    -26.842590332,
-    -23.118478775,
-    -17.0884284973,
-    -9.46554756165,
-    -7.79739236832,
-    -6.47718429565,
-    -4.50396442413,
-    -2.63221335411,
-    0.0336214564741),
-    (0.7)
-)
+data_set.addSample((0.8, 0.4), (0.7))
+data_set.addSample((0.5, 0.7), (0.5))
+data_set.addSample((1.0, 0.8), (0.95))
 
-nn = buildNetwork(2, 4, 1, bias=True)
+neural_network = buildNetwork(2, 4, 1, bias=True)
 
-trainer = BackpropTrainer(nn, ds)
+trainer = BackpropTrainer(neural_network, data_set)
 
 for i in range(2000):
     print(trainer.train())
 
 while True:
-    a = float(raw_input("VAI: \n"))
-    b = float(raw_input("VAI: \n"))
+    param_1 = float(raw_input("Param 1: \n"))
+    param_2 = float(raw_input("Param 2: \n"))
 
-    z = nn.activate((a, b))
+    resp = neural_network.activate(
+        (param_1, param_2)
+    )
 
-    print("FOI: ", z * 10)
+    print("FOI: ", resp * 10)

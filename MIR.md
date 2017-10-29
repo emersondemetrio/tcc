@@ -186,9 +186,25 @@ results/indie/
 
 ### Definição da Rede Neural
 
-Neste trabalho, a abordagem de inteligencia artificial utilizada foi, como descrito nos textos acima, mutil nível de perceptron com backpropagation.
+Neste trabalho, a abordagem de inteligencia artificial utilizada foi, como descrito nos textos acima, mutil nível de perceptron com backpropagation. Conforme mencionado, redes neurais são um sistema de aprendizagem supervisionada, o que significa que haverá interação com os resultados e avaliação dos mesmos.
+
+Para implementação, utilizou-se a biblioteca pybrain, que permite a criação, treinamento e usdo de redes neurais com backpropagation e multi nivel de perceptrons
+
+Os elementos desse tipo de rede neural são:
+
+- Conjunto de Treinamento Supervisionado
+- Agente Treinador (BackpropTrainer)
+- Rede Neural em si
+	- Quantidade de neuronios
+	- Quantidade de camadas
+	- Quantidade de saídas esperadas
+- Dados de teste
 
 ### Normalização de Entradas e Saídas
+
+Antes de iniciar o processo de treinamento e classificação, é necessário definir o pré-processamento dos dados de entrada e saída esperada da rede.
+
+Para este fim, os dados foram normalizados, conforme descrito abaixo.
 
 #### Normalização de Gênero
 
@@ -210,6 +226,13 @@ GENRE_CODES = {
     "ska"               : 12
 }
 ```
+
+### Saída Esperada
+
+A saída esperada da rede neural é um array (lista) com as probabilidades da música de pertinência em cada gênero.
+É importante salientar que por mais que a entrada da música no conjunto de treinamento possa estar categorizada como um gênero, bandas distintas de gêneros diferentes podem ter músicas parecidas com métricias similares.
+
+# ATUALIZAR SCRIPT PRA ACEITAR ENTRADA .mp3
 
 ### Primeira Tentativa - MFCC
 
