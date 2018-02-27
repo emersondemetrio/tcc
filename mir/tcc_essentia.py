@@ -20,7 +20,7 @@ def get_hash(a_string, concat_after=""):
     """Return MD5 of string and concat something after"""
 
     return "{}{}".format(
-        hashlib.md5(a_string).hexdigest(),
+        hashlib.md5(a_string.encode('utf-8')).hexdigest(),
         concat_after
     )
 
