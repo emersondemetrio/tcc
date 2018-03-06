@@ -8,6 +8,11 @@ results/images/
 mir/output/*
 !mir/output/*empty
 
+node_modules
+jsonToCSV/node_modules
+jsonToCSV/results/*.csv
+jsonToCSV/output/*.csv
+
 # Default Python gitignore
 
 # Byte-compiled / optimized / DLL files
