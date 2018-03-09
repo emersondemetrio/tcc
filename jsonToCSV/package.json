@@ -4,11 +4,13 @@
 	"description": "",
 	"main": "index.js",
 	"dependencies": {
+		"csv-pair": "^0.4.0",
 		"jsonexport": "^2.0.11"
 	},
 	"devDependencies": {},
 	"scripts": {
-		"start": "node ./index.js"
+		"start": "node ./index.js",
+		"merge": "node ./merge.js"
 	},
 	"author": "",
 	"license": "ISC"
