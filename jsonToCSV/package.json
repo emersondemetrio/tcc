@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"dependencies": {
-		"json2csv": "^4.0.1"
+		"jsonexport": "^2.0.11"
 	},
 	"devDependencies": {},
 	"scripts": {
