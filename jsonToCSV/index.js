@@ -6,6 +6,7 @@ const resolve = require('path').resolve
 var jsonexport = require('jsonexport');
 
 const folderPath = process.argv[2];
+const maxFileNumber = process.argv[3] || 1000;
 
 // npm start /home/emerson/projects/tcc/input # for example
 
@@ -19,13 +20,18 @@ const parseJsonFile = (inputPath, outputPath) => {
 }
 
 fs.readdir(folderPath, (err, files) => {
-
+	let count = 0;
 	files.forEach(file => {
+		if (count < maxFileNumber) {
+			const inputPath = resolve(folderPath, file);
+			const outputPath = resolve("./", "output", file.replace(".json", ".csv"));
+			console.log(`From ${inputPath} to ${outputPath}`);
 
-		const inputPath = resolve(folderPath, file);
-		const outputPath = resolve("./", "output", file.replace(".json", ".csv"));
-		console.log(`From ${inputPath} to ${outputPath}`);
-
-		parseJsonFile(inputPath, outputPath);
+			parseJsonFile(inputPath, outputPath);
+			count++;
+		} else {
+			console.log("Max Limit. Exiting");
+			process.exit(0);
+		}
 	});
 });
