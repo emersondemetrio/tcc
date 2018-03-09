@@ -15,13 +15,17 @@ const parseJsonFile = (inputPath, outputPath) => {
 	const input = fs.createReadStream(inputPath, { encoding: 'utf8' });
 	const output = fs.createWriteStream(outputPath, { encoding: 'utf8' });
 
-	input.pipe(jsonexport({}, {}, () => {})).pipe(output);
+	input.pipe(jsonexport()).pipe(output);
 }
 
 fs.readdir(folderPath, (err, files) => {
+
 	files.forEach(file => {
+
 		const inputPath = resolve(folderPath, file);
 		const outputPath = resolve("./", "output", file.replace(".json", ".csv"));
+		console.log(`From ${inputPath} to ${outputPath}`);
+
 		parseJsonFile(inputPath, outputPath);
 	});
 });
