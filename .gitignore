@@ -115,4 +115,6 @@ ENV/
 # mypy
 .mypy_cache/
 results/
-results
+results*
+
+db_populate/node_modules

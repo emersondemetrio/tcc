@@ -1,6 +1,7 @@
 """
 This module reads the information from given folder
 """
+
 from __future__ import print_function
 import os
 import argparse
