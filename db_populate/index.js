@@ -2,6 +2,7 @@ const fs = require('fs');
 const process = require('process');
 const resolvePath = require('path').resolve
 const mysql = require('mysql');
+const getGenreByArtist = require('./genre');
 
 // npm start /home/emerson/projects/tcc/input # for example
 
@@ -28,8 +29,8 @@ const _s = (string) => {
 		.trim();
 }
 
-const _g = (string) => {
-	const rawGenre = (string.split(',')[0]).toLocaleLowerCase();
+const _g = (genre, artist) => {
+	const rawGenre = (genre.split(',')[0]).toLocaleLowerCase();
 
 	if (rawGenre === 'rock n roll' || rawGenre === 'rock & roll') {
 		return 'rock and roll';
@@ -109,6 +110,14 @@ const _g = (string) => {
 		return 'country'
 	}
 
+	if (rawGenre === 'eo psychedelia') {
+		return 'neo psychedelia'
+	}
+
+	if (genre === 'unknown') {
+		return getGenreByArtist(artist);
+	}
+
 	return rawGenre;
 }
 
@@ -147,53 +156,63 @@ const readFilePromise = (pathModel) => new Promise((resolve, reject) => {
 });
 
 const insertMusic = (id, parsedFile, index) => {
-	const INSERT_QUERY = `INSERT INTO music (
-		id,
-		name,
-		album,
-		artist,
-		genre,
-		average_loudness,
-		bpm,
-		beats_loudness_mean,
-		danceability,
-		chords_changes_rate,
-		chords_number_rate,
-		extra
-	) VALUES (
-		'${id}',
-		'${_s(parsedFile.metadata.tags.title ? parsedFile.metadata.tags.title[0] : 'unknown')}',
-		'${_s(parsedFile.metadata.tags.album ? parsedFile.metadata.tags.album[0] : 'unknown')}',
-		'${_s(parsedFile.metadata.tags.artist ? parsedFile.metadata.tags.artist[0] : 'unknown')}',
-		'${_g(_s(parsedFile.metadata.tags.genre ? parsedFile.metadata.tags.genre[0] : 'unknown'))}',
-		'${parsedFile.lowlevel.average_loudness}',
-		'${parsedFile.rhythm.bpm}',
-		'${parsedFile.rhythm.beats_loudness.mean}',
-		'${parsedFile.rhythm.danceability}',
-		'${parsedFile.tonal.chords_changes_rate}',
-		'${parsedFile.tonal.chords_number_rate}',
-		'${parsedFile.tonal.key_strength}'
-	);`;
+	const artist = _s(parsedFile.metadata.tags.artist ? parsedFile.metadata.tags.artist[0] : 'unknown');
+	let genre = _s(parsedFile.metadata.tags.genre ? parsedFile.metadata.tags.genre[0] : 'unknown');
+	genre = _g(genre, artist)
 
-	connection.query(INSERT_QUERY, (error, results, fields) => {
-		if (error) {
-			console.log(error.message);
+	if (genre === 'unknown' && artist === 'unknown') {
+		fs.appendFile(ERROR_LOG, JSON.stringify(parsedFile), (err) => {
+			if (err) throw err;
+		});
+	} else {
+		const INSERT_QUERY = `INSERT INTO music (
+			id,
+			name,
+			album,
+			artist,
+			genre,
+			average_loudness,
+			bpm,
+			beats_loudness_mean,
+			danceability,
+			chords_changes_rate,
+			chords_number_rate,
+			extra
+		) VALUES (
+			'${id}',
+			'${_s(parsedFile.metadata.tags.title ? parsedFile.metadata.tags.title[0] : 'unknown')}',
+			'${_s(parsedFile.metadata.tags.album ? parsedFile.metadata.tags.album[0] : 'unknown')}',
+			'${artist}',
+			'${genre}',
+			'${parsedFile.lowlevel.average_loudness}',
+			'${parsedFile.rhythm.bpm}',
+			'${parsedFile.rhythm.beats_loudness.mean}',
+			'${parsedFile.rhythm.danceability}',
+			'${parsedFile.tonal.chords_changes_rate}',
+			'${parsedFile.tonal.chords_number_rate}',
+			'${parsedFile.tonal.key_strength}'
+		);`;
 
-			if (error.code !== 'ER_DUP_ENTRY') {
-				console.log(INSERT_QUERY, error.code);
+		connection.query(INSERT_QUERY, (error, results, fields) => {
+			if (error) {
+				console.log(error.message);
 
-				const errorLog = `code: ${error.code}
+				if (error.code !== 'ER_DUP_ENTRY') {
+					console.log(INSERT_QUERY, error.code);
+
+					const errorLog = `code: ${error.code}
 				msg: ${error.message}
 				query: ${INSERT_QUERY}`;
 
-				fs.appendFile(ERROR_LOG, errorLog, (err) => {
-					if (err) throw err;
-				});
+					fs.appendFile(ERROR_LOG, errorLog, (err) => {
+						if (err) throw err;
+					});
+				}
+			} else {
+				console.log(`Results [index: ${index}] =`, results.affectedRows);
 			}
-		} else {
-			console.log(`Results [index: ${index}] =`, results.affectedRows);
-		}
-	});
+		});
+	}
 }
 
 readDirPromise(DIR_PATH).then((absFiles) => {
