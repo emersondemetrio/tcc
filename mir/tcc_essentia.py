@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Build Atajo Office App
+Modulo para interfaceamento entre o extrator e a lib essentia.
 """
 
 from __future__ import print_function
