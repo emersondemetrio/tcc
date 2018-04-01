@@ -29,3 +29,7 @@ Distinct Supergenre
 - Random forest?
 Correctly Classified Instances       10358               99.971  %
 Incorrectly Classified Instances         3                0.029  %
+
+
+RANDOM FOREST: USE TRAINNING SET!
+weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
