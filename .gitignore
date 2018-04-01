@@ -118,3 +118,6 @@ results/
 results*
 
 db_populate/node_modules
+train-test/node_modules
+train-test/results/*.csv
+train-test/results/*.sql
