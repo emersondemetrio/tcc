@@ -1,0 +1,16 @@
+{
+  "name": "new_fields",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "# not yet",
+    "start": "node ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graceful-fs": "^4.1.11",
+    "mysql": "^2.15.0"
+  }
+}

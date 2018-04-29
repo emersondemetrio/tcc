@@ -6,7 +6,7 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: '',
+	password: '123',
 	database: 'mir'
 });
 
@@ -22,7 +22,7 @@ const createTestSetPerGenre = (limit, super_genre) => {
 		if (error) {
 			console.log(error.message);
 		}
-		
+
 		let out = '';
 
 		results.forEach((result) => {
